@@ -40,16 +40,11 @@ function Login(props) {
             password: password
         }
         const response = await userAPI.login(user)
-        console.log(response);
 
         if (response.msg === "Đăng nhập thành công") {
-            if (response.user.id_permission.permission === "Nhân Viên") {
+             if (response.user.id_permission.permission === "Admin") {
                 addLocal(response.jwt, response.user)
                 history.push('/customer')
-            }
-            else if (response.user.id_permission.permission === "Admin") {
-                addLocal(response.jwt, response.user)
-                history.push('/user')
             } else {
                 setValidationMsg({ api: "Bạn không có quyền truy cập" })
             }
@@ -58,10 +53,8 @@ function Login(props) {
             setValidationMsg({ api: response.msg })
     }
 
-    if (jwt && user && user.id_permission.permission === "Nhân Viên") {
+     if (jwt && user && user.id_permission.permission === "Admin") {
         return <Redirect to="/customer" />
-    } else if (jwt && user && user.id_permission.permission === "Admin") {
-        return <Redirect to="/user" />
     }
 
     return (

@@ -83,6 +83,7 @@ function Product() {
                                                 <th>ID</th>
                                                 <th>Name</th>
                                                 <th>Price</th>
+                                                <th>Stock</th>
                                                 <th>Image</th>
                                                 <th>Describe</th>
                                                 {/* <th>Producer</th> */}
@@ -98,6 +99,7 @@ function Product() {
                                                         <td className="name">{value._id}</td>
                                                         <td className="name">{value.name_product}</td>
                                                         <td>{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.price_product)+ ' VNĐ'}</td>
+                                                        <td className="name">{value.stock}</td>
                                                         <td><img src={`http://localhost:8000${value.image}`} alt="" style={{ width: '70px' }} /></td>
                                                         <td className="name" style={{ width: '40px' }}>{value.describe}</td>
                                                         <td>{value.id_category ? value.id_category.category : ""}</td>

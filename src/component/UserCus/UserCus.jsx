@@ -59,7 +59,7 @@ function UserCus(props) {
         }
     }
 
-
+    console.log("users:", users)
     return (
         <div className="page-wrapper">
 
@@ -80,6 +80,8 @@ function UserCus(props) {
                                                 <th>ID</th>
                                                 <th>Name</th>
                                                 <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Gender</th>
                                                 <th>Permission</th>
                                                 <th>Action</th>
                                             </tr>
@@ -92,6 +94,8 @@ function UserCus(props) {
                                                         <td>{value._id}</td>
                                                         <td>{value.fullname}</td>
                                                         <td>{value.email}</td>
+                                                        <td>{value.phone}</td>
+                                                        <td>{value.gender}</td>
                                                         <td>{value.id_permission.permission}</td>
                                                         <td>
                                                             <div className="d-flex">

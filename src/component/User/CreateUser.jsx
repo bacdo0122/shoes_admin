@@ -6,12 +6,14 @@ import isEmail from 'validator/lib/isEmail'
 
 import userApi from '../Api/userAPI'
 import permissionAPI from '../Api/permissionAPI'
+import { isMobilePhone } from 'validator';
 
 function CreateUser(props) {
     const [permission, setPermission] = useState([])
     const [name, setName] = useState('');
     const [username, setUserName] = useState('');
     const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [permissionChoose, setPermissionChoose] = useState('');
     const [validationMsg, setValidationMsg] = useState('');
@@ -39,6 +41,12 @@ function CreateUser(props) {
             msg.email = "Email không được để trống"
         } else if (!isEmail(email)) {
             msg.email = "Email sai định dạng"
+        }
+
+        if (isEmpty(phone)) {
+            msg.phone = "Phone không được để trống"
+        } else if (phongeRegex.test(email.trim()) === false) {
+            msg.phone = "Phone sai định dạng"
         }
 
         if (isEmpty(password)) {
@@ -135,6 +143,12 @@ function CreateUser(props) {
                                         <label htmlFor="password">Password:</label>
                                         <input type="password" className="form-control" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                                         <p className="form-text text-danger">{validationMsg.password}</p>
+                                    </div>
+
+                                    <div className="form-group w-50">
+                                        <label htmlFor="phone">Phone:</label>
+                                        <input type="text" className="form-control" id="phone" name="phone" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                                        <p className="form-text text-danger">{validationMsg.phone}</p>
                                     </div>
 
                                     <div className="form-group w-50">

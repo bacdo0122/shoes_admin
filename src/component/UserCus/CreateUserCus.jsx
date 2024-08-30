@@ -14,7 +14,10 @@ function CreateUserCus(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [permissionChoose, setPermissionChoose] = useState('66bbf2af196b7135d3146369');
+    const [gender, setGender] = useState('Male');
+
     const [validationMsg, setValidationMsg] = useState('');
+    const [phone, setPhone] = useState('');
     const { handleSubmit } = useForm();
 
     useEffect(() => {
@@ -27,6 +30,7 @@ function CreateUserCus(props) {
 
     const validateAll = () => {
         // const phongeRegex = /^0(?=.+[0-9]).{9}$/
+          const phongeRegex = /^0(?=.+[0-9]).{9}$/
         const nameRegex = /^\b[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ ]+.{1}$/
         // const usernameRegex = /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/
         let msg = {}
@@ -40,6 +44,11 @@ function CreateUserCus(props) {
             msg.email = "Email không được để trống"
         } else if (!isEmail(email)) {
             msg.email = "Email sai định dạng"
+        }
+
+        
+        if (isEmpty(phone)) {
+            msg.phone = "Phone không được để trống"
         }
 
         if (isEmpty(password)) {
@@ -67,7 +76,9 @@ function CreateUserCus(props) {
             email: email,
             password: password,
             username: username,
-            permission: permissionChoose
+            permission: permissionChoose,
+            phone: phone,
+            gender: gender
         }
         const query = '?' + queryString.stringify(user)
         const response = await userApi.create(query)
@@ -78,7 +89,7 @@ function CreateUserCus(props) {
             setUserName('');
             setEmail('');
             setPassword('');
-
+            setPhone('');
         }
         setValidationMsg({ api: response.msg })
 
@@ -92,7 +103,7 @@ function CreateUserCus(props) {
                     <div className="col-12">
                         <div className="card">
                             <div className="card-body">
-                                <h4 className="card-title">Create User</h4>
+                                <h4 className="card-title">Create Customer</h4>
                                 {
                                     validationMsg.api === "Bạn đã thêm thành công" ?
                                         (
@@ -132,6 +143,38 @@ function CreateUserCus(props) {
                                         <label htmlFor="password">Password:</label>
                                         <input type="password" className="form-control" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                                         <p className="form-text text-danger">{validationMsg.password}</p>
+                                    </div>
+
+                                    <div className="form-group w-50">
+                                        <label htmlFor="phone">Phone:</label>
+                                        <input type="text" className="form-control" id="phone" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
+                                        <p className="form-text text-danger">{validationMsg.phone}</p>
+                                    </div>
+
+                                    <div className="form-group w-50">
+                                        <label htmlFor="categories" className="mr-2">Chọn giới tính:</label>
+                                        <select name="categories" id="categories" value={gender} onChange={(e) => setGender(e.target.value)}>
+                                            <option>Chọn giới tính</option>
+                                            {
+                                                ['male', 'female'].map((item, index) => (
+                                                    <option value={item} key={index} >{item}</option>
+                                                ))
+                                            }
+                                        </select>
+                                        <p className="form-text text-danger">{validationMsg.permission}</p>
+                                    </div>
+
+                                    <div className="form-group w-50">
+                                        <label htmlFor="categories" className="mr-2">Chọn quyền:</label>
+                                        <select name="categories" id="categories" value={permissionChoose} onChange={(e) => setPermissionChoose(e.target.value)}>
+                                            <option>Chọn quyền</option>
+                                            {
+                                                permission && permission.map((item, index) => (
+                                                    <option value={item._id} key={index} >{item.permission}</option>
+                                                ))
+                                            }
+                                        </select>
+                                        <p className="form-text text-danger">{validationMsg.permission}</p>
                                     </div>
 
 
