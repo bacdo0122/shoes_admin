@@ -35,7 +35,7 @@ function DetailOrder(props) {
 
         const fetchAllData = async () => {
             const od = await orderAPI.detailOrder(idDetail, query)
-            console.log(od)
+            console.log("od:", od)
             setTotalPage(od.totalPage)
             setDetails(od.details)
         }

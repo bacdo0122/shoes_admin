@@ -83,7 +83,7 @@ function ConfirmOrder(props) {
             })
         }
     }
-
+    console.log("order:", order)
     return (
         <div className="page-wrapper">
 
@@ -116,11 +116,11 @@ function ConfirmOrder(props) {
 
                                         <tbody>
                                             {
-                                                order && order.map((value, index) => (
+                                                order.length > 0 && order.map((value, index) => (
                                                     <tr key={index}>
                                                         <td>
                                                             <div className="d-flex">
-                                                                <Link to={"/order/detail/" + value._id} className="btn btn-info mr-1">Detail</Link>
+                                                                <Link to={"/order/detail/" + value?._id} className="btn btn-info mr-1">Detail</Link>
 
                                                                 <button type="button" style={{ cursor: 'pointer', color: 'white' }} onClick={() => handleConfirm(value)} className="btn btn-success mr-1" >Xác nhận</button>
                                                                 {
@@ -128,14 +128,14 @@ function ConfirmOrder(props) {
                                                                 }       
                                                             </div>
                                                         </td>
-                                                        <td className="name">{value._id}</td>
-                                                        <td className="name">{value.id_note.fullname}</td>
-                                                        <td className="name">{value.id_user.email}</td>
-                                                        <td className="name">{value.id_note.phone}</td>
-                                                        <td className="name">{value.address}</td>
+                                                        <td className="name">{value?._id}</td>
+                                                        <td className="name">{value?.id_note?.fullname}</td>
+                                                        <td className="name">{value?.id_user?.email}</td>
+                                                        <td className="name">{value?.id_note?.phone}</td>
+                                                        <td className="name">{value?.address}</td>
                                                         <td>
                                                             {(() => {
-                                                                switch (value.status) {
+                                                                switch (value?.status) {
                                                                     case "1": return "Đang xử lý";
                                                                     case "2": return "Đã xác nhận";
                                                                     case "3": return "Đang giao";
@@ -144,9 +144,9 @@ function ConfirmOrder(props) {
                                                                 }
                                                             })()}
                                                         </td>
-                                                        <th clasName="name">{value.id_coupon}</th>
+                                                        <th clasName="name">{value?.id_coupon}</th>
                                                         <td className="name">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.total)+ ' VNĐ'}</td>
-                                                        <td className="name">{value.pay === true ? "Đã thanh toán" : "Chưa thanh toán"}</td>
+                                                        <td className="name">{value?.pay === true ? "Đã thanh toán" : "Chưa thanh toán"}</td>
 
                                                     </tr>
                                                 ))
