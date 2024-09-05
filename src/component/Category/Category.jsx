@@ -66,11 +66,11 @@ function Category(props) {
                     <div className="col-12">
                         <div className="card">
                             <div className="card-body">
-                                <h4 className="card-title">Category</h4>
+                                <h4 className="card-title">Thể loại</h4>
                                 {/* <h4 className="card-title">Producer</h4> */}
                                 <Search handlerSearch={handlerSearch} />
 
-                                <Link to="/category/create" className="btn btn-primary my-3">New create</Link>
+                                <Link to="/category/create" className="btn btn-primary my-3">Tạo mới</Link>
                                 {/* <Link to="/producer/create" className="btn btn-primary my-3">New create</Link> */}
 
 
@@ -78,9 +78,10 @@ function Category(props) {
                                     <table className="table table-striped table-bordered no-wrap">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Action</th>
+                                                <th>Mã</th>
+                                                <th>Tên</th>
+                                                <th>Giới tính</th>
+                                                <th>Hành động</th>
                                             </tr>
                                         </thead>
 
@@ -90,14 +91,15 @@ function Category(props) {
                                                     <tr key={index}>
                                                         <td className="name">{value._id}</td>
                                                         <td className="name">{value.category}</td>
+                                                        <td className="name">{value.gender}</td>
                                                         <td>
                                                             <div className="d-flex">
-                                                                <Link to={"/category/" + value.category} className="btn btn-info mr-1">Detail</Link>
-                                                                <Link to={"/category/update/" + value._id} className="btn btn-success mr-1">Update</Link>
+                                                                <Link to={"/category/" + value.category} className="btn btn-info mr-1">Chi tiết</Link>
+                                                                <Link to={"/category/update/" + value._id} className="btn btn-success mr-1">Cập nhật</Link>
                                                                 {/* <Link to={"/producer/" + value.category} className="btn btn-info mr-1">Detail</Link>
                                                                 <Link to={"/producer/update/" + value._id} className="btn btn-success mr-1">Update</Link> */}
 
-                                                                <button type="button" onClick={() => handleDelete(value)} style={{ cursor: 'pointer', color: 'white' }} className="btn btn-danger" >Delete</button>
+                                                                <button type="button" onClick={() => handleDelete(value)} style={{ cursor: 'pointer', color: 'white' }} className="btn btn-danger" >Xóa</button>
                                                             </div>
                                                         </td>
                                                     </tr>

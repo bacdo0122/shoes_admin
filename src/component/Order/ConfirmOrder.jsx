@@ -92,7 +92,7 @@ function ConfirmOrder(props) {
                     <div className="col-12">
                         <div className="card">
                             <div className="card-body">
-                                <h4 className="card-title">Confirm Order</h4>
+                                <h4 className="card-title">Xác thực đơn hàng</h4>
                                 {
                                     note ? (<h5>{note}</h5>) : (<div></div>)
                                 }
@@ -100,16 +100,16 @@ function ConfirmOrder(props) {
                                     <table className="table table-striped table-bordered no-wrap">
                                         <thead>
                                             <tr>
-                                                <th>Action</th>
-                                                <th>ID</th>
-                                                <th>Name</th>
+                                                <th>Hành động</th>
+                                                <th>Mã</th>
+                                                <th>Tên</th>
                                                 <th>Email</th>
-                                                <th>Phone</th>
-                                                <th>Address</th>
-                                                <th>Status</th>
-                                                <th>Code</th>
-                                                <th>Total Money</th>
-                                                <th>Payment</th>
+                                                <th>Số điện thoại</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Tình trạng</th>
+                                                <th>Mã khuyến mãi</th>
+                                                <th>Tổng tiền</th>
+                                                <th>Thanh toán</th>
 
                                             </tr>
                                         </thead>

@@ -7,13 +7,13 @@ import productAPI from '../Api/productAPI';
 function UpdateProduct(props) {
     const [id] = useState(props.match.params.id)
     const [category, setCategory] = useState([])
-    const [gender] = useState(["Unisex", "Male", "Female"])
+    const [gender] = useState([ "male", "female"])
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
     const [number, setNumber] = useState('');
-    const [categoryChoose, setCategoryChoose] = useState('');
-    const [genderChoose, setGenderChoose] = useState('Unisex');
+    const [categoryChoose, setCategoryChoose] = useState('male');
+    const [genderChoose, setGenderChoose] = useState('');
     const [file, setFile] = useState();
     const [image, setImage] = useState();
     const [fileName, setFileName] = useState("");
@@ -29,7 +29,8 @@ function UpdateProduct(props) {
             setName(rs.name_product)
             setPrice(rs.price_product)
             setDescription(rs.describe)
-            // setNumber(rs.number)
+            setNumber(rs.stock)
+            setGenderChoose(rs.gender)
             setCategoryChoose(rs.id_category)
             setImage(rs.image)
             setCategory(ct)
@@ -63,7 +64,7 @@ function UpdateProduct(props) {
         if (isEmpty(name)) {
             msg.name = "Tên không được để trống"
         }
-        if (isEmpty(price)) {
+        if (isEmpty(String(price))) {
             msg.price = "Giá không được để trống"
         }
         if (isEmpty(description)) {
@@ -98,7 +99,7 @@ function UpdateProduct(props) {
         formData.append("name", name)
         formData.append("price", price)
         formData.append("category", categoryChoose)
-        // formData.append("number", number)
+        formData.append("stock", number)
         formData.append("description", description)
         formData.append("gender", genderChoose)
 
@@ -153,11 +154,11 @@ function UpdateProduct(props) {
                                         <input type="text" className="form-control" id="description" name="description" value={description} onChange={(e) => setDescription(e.target.value)} required />
                                         <p className="form-text text-danger">{validationMsg.description}</p>
                                     </div>
-                                    {/* <div className="form-group w-50">
+                                    <div className="form-group w-50">
                                         <label htmlFor="number">Số lượng: </label>
                                         <input type="text" className="form-control" id="number" name="number" value={number} onChange={(e) => onChangeNumber(e)} required />
                                         <p className="form-text text-danger">{validationMsg.number}</p>
-                                    </div> */}
+                                    </div>
 
                                     <div className="form-group w-50">
                                         {/* <label htmlFor="categories" className="mr-2">Chọn loại:</label> */}
@@ -174,7 +175,7 @@ function UpdateProduct(props) {
                                         <p className="form-text text-danger">{validationMsg.category}</p>
                                     </div>
 
-                                    {/* <div className="form-group w-50">
+                                    <div className="form-group w-50">
                                         <label htmlFor="gender" className="mr-2">Chọn giới tính:</label>
                                         <select name="gender" id="gender" value={genderChoose} onChange={(e) => setGenderChoose(e.target.value)}>
                                             {
@@ -184,7 +185,7 @@ function UpdateProduct(props) {
                                             }
 
                                         </select>
-                                    </div> */}
+                                    </div>
 
                                     <div className="form-group w-50">
                                         <label>Hình Ảnh</label>

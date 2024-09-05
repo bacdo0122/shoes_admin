@@ -63,7 +63,7 @@ function Product() {
             })
         }
     }
-
+    console.log("a:", products)
     return (
         <div className="page-wrapper">
             <div className="container-fluid">
@@ -87,6 +87,7 @@ function Product() {
                                                 <th>Ảnh</th>
                                                 <th>Mô tả</th>
                                                 <th>Thể loại</th>
+                                                <th>Giới tính</th>
                                                 <th>Hành động</th>
                                             </tr>
                                         </thead>
@@ -102,6 +103,7 @@ function Product() {
                                                         <td><img src={`http://localhost:8000${value.image}`} alt="" style={{ width: '70px' }} /></td>
                                                         <td className="name" style={{ width: '40px' }}>{value.describe}</td>
                                                         <td>{value.id_category ? value.id_category.category : ""}</td>
+                                                        <td className="name">{value.gender}</td>
                                                         <td>
                                                             <div className="d-flex">
                                                                 <Link to={"/product/update/" + value._id} className="btn btn-success mr-1">Cập nhật</Link>

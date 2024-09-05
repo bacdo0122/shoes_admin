@@ -62,7 +62,7 @@ function Sale(props) {
         }
     }
 
-
+    console.log("sale:", sale)
     return (
         <div className="page-wrapper">
             <div className="container-fluid">
@@ -70,23 +70,24 @@ function Sale(props) {
                     <div className="col-12">
                         <div className="card">
                             <div className="card-body">
-                                <h4 className="card-title">Sale</h4>
+                                <h4 className="card-title">Giảm giá</h4>
                                 <Search handlerSearch={handlerSearch} />
 
-                                <Link to="/sale/create" className="btn btn-primary my-3">New create</Link>
+                                <Link to="/sale/create" className="btn btn-primary my-3">Tạo mới</Link>
 
 
                                 <div className="table-responsive">
                                     <table className="table table-striped table-bordered no-wrap">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Promotion</th>
-                                                <th>Describe</th>
-                                                <th>Start</th>
-                                                <th>End</th>
-                                                <th>Status</th>
-                                                <th>Edit</th>
+                                                <th>Mã</th>
+                                                <th>Số lượng giảm (%)</th>
+                                                <th>Mô tả</th>
+                                                <th>Ngày bắt đầu</th>
+                                                <th>Ngày kết thúc</th>
+                                                <th>Tình trạng</th>
+                                                <th>Tên sản phẩm</th>
+                                                <th>Hành động</th>
                                             </tr>
                                         </thead>
 
@@ -100,10 +101,11 @@ function Sale(props) {
                                                         <td className="name">{value.start}</td>
                                                         <td className="name">{value.end}</td>
                                                         <td className="name">{value.status ? "Active" : "Disable"}</td>
+                                                        <td className="name">{value.id_product?.name_product}</td>
                                                         <td>
                                                             <div className="d-flex">
-                                                                <Link to={"/sale/" + value._id} className="btn btn-success mr-1">Update</Link>
-                                                                <button type="button" style={{ cursor: 'pointer', color: 'white' }} onClick={() => handleDelete(value._id)} className="btn btn-danger" >Delete</button>
+                                                                <Link to={"/sale/" + value._id} className="btn btn-success mr-1">Cập nhật</Link>
+                                                                <button type="button" style={{ cursor: 'pointer', color: 'white' }} onClick={() => handleDelete(value._id)} className="btn btn-danger" >Xóa</button>
                                                             </div>
                                                         </td>
                                                     </tr>

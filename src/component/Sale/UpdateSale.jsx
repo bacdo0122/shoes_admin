@@ -67,7 +67,7 @@ function UpdateSale(props) {
                     <div className="col-12">
                         <div className="card">
                             <div className="card-body">
-                                <h4 className="card-title">Update Sale</h4>
+                                <h4 className="card-title">Cập nhật giảm giá</h4>
                                 {
                                     showMessage === "Bạn đã cập nhật thành công" ?
                                         (
@@ -87,7 +87,7 @@ function UpdateSale(props) {
                                 <form onSubmit={handleSubmit(onSubmit)}>
                                 
                                     <div className="form-group w-50">
-                                        <label htmlFor="name">Khuyến Mãi</label>
+                                        <label htmlFor="name">Khuyến Mãi (%)</label>
                                         <input type="number" className="form-control" id="promotion" 
                                         {...register('promotion')} 
                                         value={promotion} 
@@ -122,6 +122,7 @@ function UpdateSale(props) {
                                         </div>
                                     </div>
                                     <div className="form-group w-25">
+                                    <label htmlFor="description">Sản phẩm lựa chọn</label>
                                         <select className="form-control" value={selectProduct} onChange={(e) => setSelectProduct(e.target.value)}>
                                             {
                                                 product && product.map(value => (
@@ -131,7 +132,7 @@ function UpdateSale(props) {
                                         </select>
                                     </div>
 
-                                    <button type="submit" className="btn btn-primary">Update Sale</button>
+                                    <button type="submit" className="btn btn-primary">Cập nhật</button>
                                 </form>
                             </div>
                         </div>

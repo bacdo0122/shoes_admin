@@ -8,6 +8,8 @@ function CreateCategory(props) {
     const [name, setName] = useState('');
     const [validationMsg, setValidationMsg] = useState('');
     const { handleSubmit } = useForm();
+    const [gender] = useState(["male", "female"])
+    const [genderChoose, setGenderChoose] = useState('');
 
     const validateAll = () => {
         let msg = {}
@@ -29,7 +31,7 @@ function CreateCategory(props) {
     }
 
     const addCategory = async () => {
-        const query = '?' + queryString.stringify({ name: name })
+        const query = '?' + queryString.stringify({ name: name, gender: genderChoose })
         const response = await categoryApi.create(query)
         if (response.msg === "Bạn đã thêm thành công") {
             setName('');
@@ -45,7 +47,7 @@ function CreateCategory(props) {
                     <div className="col-12">
                         <div className="card">
                             <div className="card-body">
-                                <h4 className="card-title">Create Category</h4>
+                                <h4 className="card-title">Tạo thể loại</h4>
                                 {/* <h4 className="card-title">Create Producer</h4> */}
                                 {
                                     validationMsg.api === "Bạn đã thêm thành công" ?
@@ -65,13 +67,23 @@ function CreateCategory(props) {
 
                                 <form onSubmit={handleSubmit(handleCreate)}>
                                     <div className="form-group w-50">
-                                        <label htmlFor="name">Tên loại</label>
-                                        {/* <label htmlFor="name">Tên nhà sản xuất: </label> */}
+                                        <label htmlFor="name">Tên</label>
                                         <input type="text" className="form-control" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} required />
                                         <p className="form-text text-danger">{validationMsg.name}</p>
                                     </div>
+                                    <div className="form-group w-50">
+                                        <label htmlFor="gender" className="mr-2">Chọn giới tính:</label>
+                                        <select name="gender" id="gender" value={genderChoose} onChange={(e) => setGenderChoose(e.target.value)}>
+                                            {
+                                                gender && gender.map((item, index) => (
+                                                    <option value={item} key={index}>{item}</option>
+                                                ))
+                                            }
 
-                                    <button type="submit" className="btn btn-primary">Create</button>
+                                        </select>
+                                    </div>
+
+                                    <button type="submit" className="btn btn-primary">Tạo</button>
                                 </form>
                             </div>
                         </div>

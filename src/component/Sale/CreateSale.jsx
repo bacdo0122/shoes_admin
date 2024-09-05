@@ -66,7 +66,7 @@ function CreateSale(props) {
                     <div className="col-12">
                         <div className="card">
                             <div className="card-body">
-                                <h4 className="card-title">Create Sale</h4>
+                                <h4 className="card-title">Tạo giảm giá</h4>
                                 {
                                     showMessage === "Bạn đã thêm thành công" ?
                                         (
@@ -86,7 +86,7 @@ function CreateSale(props) {
                                 <form onSubmit={handleSubmit(onSubmit)}>
                                 
                                     <div className="form-group w-50">
-                                        <label htmlFor="description">Khuyến Mãi</label>
+                                        <label htmlFor="description">Khuyến Mãi (%)</label>
                                         <input type="number" className="form-control" id="promotion" {...register('promotion', { required: true })} />
                                         {errors.promotion && errors.promotion.type === "required" && <p className="form-text text-danger">Khuyến mãi không được để trống</p>}
                                     </div>
@@ -105,6 +105,7 @@ function CreateSale(props) {
                                         <DatePicker className="form-control" selected={endDate} onChange={(date) => setEndDate(date)} />
                                     </div>
                                     <div className="form-group w-25">
+                                    <label htmlFor="description">Sản phẩm lựa chọn</label>
                                         <select className="form-control" value={selectProduct} onChange={(e) => setSelectProduct(e.target.value)}>
                                             {
                                                 product && product.map(value => (
@@ -114,7 +115,7 @@ function CreateSale(props) {
                                         </select>
                                     </div>
 
-                                    <button type="submit" className="btn btn-primary">Create Sale</button>
+                                    <button type="submit" className="btn btn-primary">Tạo</button>
                                 </form>
                             </div>
                         </div>

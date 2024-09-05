@@ -67,7 +67,7 @@ function Order(props) {
                     <div className="col-12">
                         <div className="card">
                             <div className="card-body">
-                                <h4 className="card-title">Order</h4>
+                                <h4 className="card-title">Đơn hàng</h4>
                                 {
                                     note != "" ? (<h5>{note}. Trang sẽ load lại sau 4s</h5>) : (<div></div>)
                                 }
@@ -75,15 +75,15 @@ function Order(props) {
                                     <table className="table table-striped table-bordered no-wrap">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
+                                                <th>Mã</th>
+                                                <th>Tên</th>
                                                 <th>Email</th>
-                                                <th>Phone</th>
-                                                <th>Address</th>
-                                                <th>Status</th>
-                                                <th>Total Money</th>
-                                                <th>Payment</th>
-                                                <th>Action</th>
+                                                <th>Số điện thoại</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Tình trạng</th>
+                                                <th>Tổng tiền</th>
+                                                <th>Tình trạng thanh toán</th>
+                                                <th>Hành động</th>
                                             </tr>
                                         </thead>
 

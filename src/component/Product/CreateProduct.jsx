@@ -6,13 +6,13 @@ import productAPI from '../Api/productAPI';
 
 function CreateProduct(props) {
     const [category, setCategory] = useState([])
-    const [gender] = useState(["Unisex", "Male", "Female"])
+    const [gender] = useState(["Male", "Female"])
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
     const [number, setNumber] = useState('');
     const [categoryChoose, setCategoryChoose] = useState('');
-    const [genderChoose, setGenderChoose] = useState('Unisex');
+    const [genderChoose, setGenderChoose] = useState('');
     const [file, setFile] = useState();
     const [fileName, setFileName] = useState("");
     const [validationMsg, setValidationMsg] = useState('');
@@ -63,9 +63,7 @@ function CreateProduct(props) {
         }
         if (isEmpty(number)) {
             msg.number = "Số lượng không được để trống"
-        } else if (!priceRegex.test(number)) {
-            msg.number = "Số lượng sai định dạng"
-        }
+        } 
         if (isEmpty(categoryChoose)) {
             msg.category = "Vui lòng chọn loại"
         }
@@ -174,7 +172,7 @@ function CreateProduct(props) {
                                         <p className="form-text text-danger">{validationMsg.category}</p>
                                     </div>
 
-                                    {/* <div className="form-group w-50">
+                                    <div className="form-group w-50">
                                         <label htmlFor="gender" className="mr-2">Chọn giới tính:</label>
                                         <select name="gender" id="gender" value={genderChoose} onChange={(e) => setGenderChoose(e.target.value)}>
                                             {
@@ -184,7 +182,7 @@ function CreateProduct(props) {
                                             }
 
                                         </select>
-                                    </div> */}
+                                    </div>
 
                                     <div className="form-group w-50">
                                         <label>Hình Ảnh</label>

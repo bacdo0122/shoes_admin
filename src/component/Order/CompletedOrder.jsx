@@ -23,6 +23,7 @@ function CompletedOrder(props) {
 
         const fetchAllData = async () => {
             const od = await orderAPI.completeOrder(query)
+            console.log("od:", od, query)
             setTotalPage(od.totalPage)
             setOrder(od.orders)
             setTotalMoney(od.totalMoney)
@@ -173,6 +174,7 @@ function CompletedOrder(props) {
         }
 
     }
+    console.log('order:', order)
 
     return (
         <div className="page-wrapper">
@@ -182,20 +184,21 @@ function CompletedOrder(props) {
                     <div className="col-12">
                         <div className="card">
                             <div className="card-body">
-                                <h4 className="card-title">Complete Order</h4>
+                                <h4 className="card-title">Đơn hàng đã hoàn thành</h4>
                                 <div className="table-responsive mt-3" id="customers">
                                     <table className="table table-striped table-bordered no-wrap" id="tab_customers">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
+                                                <th>Mã</th>
+                                                <th>Tên</th>
                                                 <th>Email</th>
-                                                <th>Phone</th>
-                                                <th>Address</th>
-                                                <th>Status</th>
-                                                <th>Total</th>
-                                                <th>Payment</th>
-                                                <th>Action</th>
+                                                <th>Số điện thoại</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Tình trạng</th>
+                                                <th>Tổng tiền</th>
+                                                <th>Thanh toán</th>
+                                                <th>Ngay tao</th>
+                                                <th>Hành động</th>
                                             </tr>
                                         </thead>
 
@@ -204,9 +207,9 @@ function CompletedOrder(props) {
                                                 order && order.map((value, index) => (
                                                     <tr key={index}>
                                                         <td className="name">{value._id}</td>
-                                                        <td className="name">{value.id_note?.fullname}</td>
+                                                        <td className="name">{value.name}</td>
                                                         <td className="name">{value.id_user?.email}</td>
-                                                        <td className="name">{value.id_note?.phone}</td>
+                                                        <td className="name">{value.phone}</td>
                                                         <td className="name">{value.address}</td>
                                                         <td>
                                                             {(() => {
@@ -221,6 +224,13 @@ function CompletedOrder(props) {
                                                         </td>
                                                         <td className="name">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.total)+ ' VNĐ'}</td>
                                                         <td className="name">{value.pay === true ? "Đã thanh toán" : "Chưa thanh toán"}</td>
+                                                        <td className="name">
+                                                            {
+                                                                value.create_time 
+                                                                ? new Date(Number(value.create_time)).toUTCString()
+                                                                : 'Invalid Date'
+                                                            }
+                                                        </td>
                                                         <td>
                                                             <div className="d-flex">
                                                                 <Link to={"/order/detail/" + value._id} className="btn btn-info mr-1">Detail</Link>
@@ -265,6 +275,9 @@ function CompletedOrder(props) {
                                             <option value="null">Năm</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                            <option value="2024">2024</option>
                                         </select>
                                         &nbsp;
                                         <input type="submit" className="btn btn-primary" value="Lọc Hóa Đơn" onClick={handlerStatistic} />

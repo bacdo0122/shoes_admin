@@ -64,19 +64,19 @@ function Permission(props) {
                     <div className="col-12">
                         <div className="card">
                             <div className="card-body">
-                                <h4 className="card-title">Permission</h4>
+                                <h4 className="card-title">Phân quyền</h4>
                                 <Search handlerSearch={handlerSearch} />
 
-                                <Link to="/permission/create" className="btn btn-primary my-3">New create</Link>
+                                <Link to="/permission/create" className="btn btn-primary my-3">Tạo mới</Link>
 
 
                                 <div className="table-responsive">
                                     <table className="table table-striped table-bordered no-wrap">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Action</th>
+                                                <th>Mã</th>
+                                                <th>Tên</th>
+                                                <th>Hành động</th>
                                             </tr>
                                         </thead>
 
@@ -88,9 +88,9 @@ function Permission(props) {
                                                         <td className="name">{value.permission}</td>
                                                         <td>
                                                             <div className="d-flex">
-                                                                <Link to={"/permission/update/" + value._id} className="btn btn-success mr-1">Update</Link>
+                                                                <Link to={"/permission/update/" + value._id} className="btn btn-success mr-1">Cập nhật</Link>
 
-                                                                <button type="button" onClick={() => handleDelete(value)} style={{ cursor: 'pointer', color: 'white' }} className="btn btn-danger" >Delete</button>
+                                                                <button type="button" onClick={() => handleDelete(value)} style={{ cursor: 'pointer', color: 'white' }} className="btn btn-danger" >Xóa</button>
                                                             </div>
                                                         </td>
                                                     </tr>
