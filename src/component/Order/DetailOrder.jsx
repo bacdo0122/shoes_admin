@@ -93,8 +93,8 @@ function DetailOrder(props) {
                                                 <th>Ảnh</th>
                                                 <th>Tên</th>
                                                 <th>Giá</th>
+                                                <th>Cỡ</th>
                                                 <th>Số lượng</th>
-                                                {/* <th>Count</th> */}
                                                 <th>Tổng tiền</th>
                                             </tr>
                                         </thead>
@@ -103,11 +103,11 @@ function DetailOrder(props) {
                                             {
                                                 details && details.map((value, index) => (
                                                     <tr key={index}>
-                                                        <td><img src={value.id_product.image} alt="" style={{ width: '70px' }} /></td>
+                                                        <td><img src={`http://localhost:8000${value.id_product.image}`} alt="" style={{ width: '70px' }} /></td>
                                                         <td className="name">{value.name_product}</td>
                                                         <td className="name">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.price_product)+ ' VNĐ'}</td>
                                                         <td className="name">{value.size}</td>
-                                                        {/* <td className="name">{value.count}</td> */}
+                                                        <td className="name">{value.count}</td>
                                                         <td className="name">{new Intl.NumberFormat('vi-VN',{style: 'decimal',decimal: 'VND'}).format(value.count * Number(value.price_product))+ ' VNĐ'}</td>
                                                     </tr>
                                                 ))
@@ -121,10 +121,7 @@ function DetailOrder(props) {
                     </div>
                 </div>
             </div>
-            <footer className="footer text-center text-muted">
-                All Rights Reserved by Adminmart. Designed and Developed by
-    <a href="https://www.facebook.com/KimTien.9920/">Tiền Kim</a>.
-</footer>
+       
         </div >
     );
 }
